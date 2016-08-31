@@ -4,7 +4,7 @@
     , "version"                             : "0.1.0"
     , "homepage"                            : "https://github.com/infect-org/migrations"
     , "author"                              : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
-    , "licence"                             : "proprietary"
+    , "licence"                             : "MIT"
     , "repository": {
           "url"                             : "https://github.com/infect-org/migrations.git"
         , "type"                            : "git"
