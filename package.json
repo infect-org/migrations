@@ -2,18 +2,18 @@
       "name"                                : "migrations"
     , "description"                         : "INFECT migrations"
     , "version"                             : "0.1.0"
-    , "homepage"                            : "https://github.com/joinbox/infect-import"
+    , "homepage"                            : "https://github.com/infect-org/migrations"
     , "author"                              : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
     , "licence"                             : "proprietary"
     , "repository": {
-          "url"                             : "https://github.com/joinbox/eb-soa.git"
+          "url"                             : "https://github.com/infect-org/migrations.git"
         , "type"                            : "git"
     }
     , "engines": {
         "node"                              : ">=v4"
     }
     , "bugs": {
-        "url"                               : "https://github.com/joinbox/eb-soa/issues"
+        "url"                               : "https://github.com/infect-org/migrations/issues"
     }
     , "dependencies": {
           "ee-types"                        : "2.x"
@@ -28,11 +28,6 @@
         , "related-geo"                     : "3.x"
         , "fast-csv"                        : "2.x"
     }
-    , "devDependencies": {
-          "mocha"                           : "2.x"
-    }
+    , "devDependencies": {}
     , "private"                             : true
-    , "scripts": {
-          "test"                            : "./node_modules/mocha/bin/mocha --reporter spec"
-    }
 }
