@@ -1,0 +1,38 @@
+{
+      "name"                                : "migrations"
+    , "description"                         : "INFECT migrations"
+    , "version"                             : "0.1.0"
+    , "homepage"                            : "https://github.com/joinbox/infect-import"
+    , "author"                              : "Michael van der Weg <michael@joinbox.com> (http://joinbox.com/)"
+    , "licence"                             : "proprietary"
+    , "repository": {
+          "url"                             : "https://github.com/joinbox/eb-soa.git"
+        , "type"                            : "git"
+    }
+    , "engines": {
+        "node"                              : ">=v4"
+    }
+    , "bugs": {
+        "url"                               : "https://github.com/joinbox/eb-soa/issues"
+    }
+    , "dependencies": {
+          "ee-types"                        : "2.x"
+        , "ee-event-emitter"                : "0.3.x"
+        , "ee-log"                          : "0.3.x"
+        , "ee-argv"                         : "0.1.x"
+        , "ee-configfile"                   : "0.2.x"
+        , "related"                         : "2.x"
+        , "related-timestamps"              : "2.x"
+        , "related-localization"            : "2.x"
+        , "related-reference-counter"       : "2.x"
+        , "related-geo"                     : "3.x"
+        , "fast-csv"                        : "2.x"
+    }
+    , "devDependencies": {
+          "mocha"                           : "2.x"
+    }
+    , "private"                             : true
+    , "scripts": {
+          "test"                            : "./node_modules/mocha/bin/mocha --reporter spec"
+    }
+}

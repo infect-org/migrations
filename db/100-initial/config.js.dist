@@ -1,0 +1,28 @@
+(function() {
+    'use strict';
+
+
+    module.exports = {
+        old: {
+              type      : 'mysql'
+            , database  : 'infect'
+            , hosts: [{
+                  host           : ''
+                , username       : 'root'
+                , password       : ''
+                , pools          : ['read', 'write']
+            }]
+        }
+        , new: {
+              type      : 'postgres'
+            , database  : 'infect'
+            , schema    : 'infect'
+            , hosts: [{
+                  host           : '10.80.100.1'
+                , username       : 'postgres'
+                , password       : ''
+                , pools          : ['read', 'write']
+            }]
+        }
+    };
+})();
