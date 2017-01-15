@@ -119,9 +119,17 @@
             return query.find().then((diagnosiss) => {
                 return Promise.all(diagnosiss.map((diagnosis) => {
                     let identifier = '';
+                    let topicIdentifier = '';
+
+
+                    diagnosis.diagnosisLocale.some((locale) => {
+                        if (!identifier || locale.language.iso2.toLowerCase().trim() === 'en') identifier = locale.title.toLowerCase().trim();
+                        if (!!identifier) return true;
+                    });
+
 
                     diagnosis.topic.topicLocale.forEach((locale) => {
-                        if (!identifier || locale.language.iso2.toLowerCase().trim() === 'en') identifier = locale.title.toLowerCase().trim();
+                        if (!topicIdentifier || locale.language.iso2.toLowerCase().trim() === 'en') topicIdentifier = locale.title.toLowerCase().trim();
                     });
 
                     const locales = diagnosis.diagnosisLocale.map((locale) => {
@@ -154,7 +162,7 @@
                             alpha2: diagnosis.country.iso2.trim().toLowerCase()
                         })
                         , topic: this.new.topic({
-                            identifier: identifier
+                            identifier: topicIdentifier
                         })
                         , bacteria: bacteria
                     }).save();
@@ -253,7 +261,7 @@
                                     identifier: 'defaultValue'
                                 })
                                 , resistanceLevel: this.new.resistanceLevel({
-                                    identifier: (resistance.resistanceDefault === 1 ? 'suspectible' : (resistance.resistanceDefault === 2 ? 'intermediate' : 'resistant'))
+                                    identifier: (resistance.resistanceDefault === 1 ? 'susceptible' : (resistance.resistanceDefault === 2 ? 'intermediate' : 'resistant'))
                                 })
                                 , dataSourceId: `${resistance.id_bacteria}:${resistance.id_compound}-default`
                                 , sampleYear: new Date().getFullYear()
@@ -315,7 +323,7 @@
                             identifier: this.getSubstanceClassIdentifier(resistance.substanceClass)
                         })
                         , resistanceLevel: this.new.resistanceLevel({
-                            identifier: (resistance.resistanceDefault === 1 ? 'suspectible' : (resistance.resistanceDefault === 2 ? 'intermediate' : 'resistant'))
+                            identifier: (resistance.resistanceDefault === 1 ? 'susceptible' : (resistance.resistanceDefault === 2 ? 'intermediate' : 'resistant'))
                         })
                     }).save();
                 }));

@@ -368,7 +368,7 @@
         );
 
         insert into "resistanceLevel" ("identifier") values ('custom');
-        insert into "resistanceLevel" ("identifier") values ('suspectible');
+        insert into "resistanceLevel" ("identifier") values ('susceptible');
         insert into "resistanceLevel" ("identifier") values ('intermediate');
         insert into "resistanceLevel" ("identifier") values ('resistant');
 
@@ -386,7 +386,7 @@
                 unique ("identifier")
         );
 
-        insert into "resistanceLevel" ("identifier") values ('insel-spital');
+        insert into "tenant" ("identifier") values ('insel-spital');
 
 
 
