@@ -603,13 +603,20 @@
                                      on s."id" = ssc."id_substance"
                                    join "infect"."substanceClass" sc
                                      on ssc."id_substanceClass" = sc."id"
-                                  where sc."id" = NEW."id_substanceClass"
+                                  where sc."id" in (
+                                        select id 
+                                          from "infect"."substanceClass" 
+                                         where ("left" >= (select "left" from "infect"."substanceClass" where id = NEW."id_substanceClass")) 
+                                           and ("right" <= (select "right" from "infect"."substanceClass" where id = NEW."id_substanceClass"))
+                                        )
+                               group by s.id
                     loop
                         for "com" in select c.*
                                        from "infect"."compound" c
                                        join "infect"."substance_compound" "scom"
                                          on c."id" = "scom"."id_compound"
                                       where "scom"."id_substance" = "sub"."id"
+                                   group by c.id
                         loop
                             insert into "infect"."resistanceSample" ("id_bacteria", "id_compound", "id_dataSource", "id_resistanceLevel", "sampleYear", "dataSourceId") values (
                                   NEW."id_bacteria"
@@ -617,7 +624,7 @@
                                 , (select "id" from "infect"."dataSource" where "identifier" = 'classDefaultValue')
                                 , NEW."id_resistanceLevel"
                                 , date_part('year', current_timestamp)
-                                , (NEW."id_bacteria" || ':' || NEW."id_substanceClass" || '-' || "sub"."id" || '-' || "com"."id")
+                                , (NEW."id_bacteria" || ':' || NEW."id_substanceClass" || '-' || "sub"."id" || '-' || "com"."id" || '-' || (select string_agg(a_ssc."id_substanceClass"::varchar, ',') from "infect"."substance" a_s join "infect"."substance_substanceClass" a_ssc on a_s."id" = a_ssc."id_substance" where a_s.id = "sub"."id" group by a_s.id))
                             );
                         end loop;
                     end loop;
